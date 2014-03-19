@@ -1,4 +1,4 @@
-var migawari = require('./index.js')
+var migawari = require('../index.js')
 var assert = require('assert')
 
 var t = function(selector, html){
@@ -17,17 +17,18 @@ describe('basics', function(){
   t('#someid','<div id="someid"></div>')
 })
 describe('combinators', function(){
-  t('a > b','<a><b></b></a>')
+/*  t('a > b','<a><b></b></a>')
   t('.foo .bar','<div class="foo"><div class="bar"></div></div>')
   t('a + b','<a></a><b></b>')
+  */
   t('.a .b + .c','<div class="a"><div class="b></div><div class="c"></div></div>')
 
 })
-decribe('attributes', function(){
+
+describe('attributes', function(){
   t('a.foo[href=hoge]','<a class="foo" href="hoge"></a>')
   t('a.foo[href~=hoge]','<a class="foo" href="hoge"></a>')
   t('a.foo[href$=hoge]','<a class="foo" href="hoge"></a>')
   t('a.foo[href=hoge][title="fuga"]','<a class="foo" href="hoge" title="fuga"></a>')
   t('a.foo[href]','<a class="foo" href="href"></a>')
-  
 })
