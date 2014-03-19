@@ -1,13 +1,16 @@
 //var defaults = require('defaults')
 var jsdom = require('jsdom').jsdom
-var parser = require('./lib/parser')
 // global
 var document = jsdom("<html>")
+
+var parser = require('./lib/parser')
+var combinator = require('./lib/combinator')
 
 module.exports = function(selector){
   var htmls = []
   var parsed = parser(selector)
-  //parsed = combinatorProc(parsed)
+  var util = require('util')
+  //parsed = combinator(parsed)
   parsed.forEach(function(selectorObj){
     htmls.push(buildDom(selectorObj).innerHTML)
   })
