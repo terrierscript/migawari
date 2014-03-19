@@ -23,6 +23,6 @@ describe('', function(){
   t('*','<div></div>')
   t('a > b','<a><b></b></a>')
   t('a + b','<a></a><b></b>')
-  t('.a .b + .c','<div class="a"><div class="b></div><div class="c"></div></div>')
+  //t('.a .b + .c','<div class="a"><div class="b></div><div class="c"></div></div>')
 
 })

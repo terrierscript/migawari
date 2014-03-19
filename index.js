@@ -1,18 +1,16 @@
-var slick = require('slick')
 //var defaults = require('defaults')
 var jsdom = require('jsdom').jsdom
-
+var parser = require('./lib/parser')
 // global
 var document = jsdom("<html>")
 
 module.exports = function(selector){
   var htmls = []
-  var parsed = parseSelector(selector)
+  var parsed = parser(selector)
   parsed = combinatorProc(parsed)
   parsed.forEach(function(selectorObj){
     htmls.push(buildDom(selectorObj).innerHTML)
   })
-
   return htmls.join("")
 }
 
@@ -38,6 +36,7 @@ function combinatorProc(selectorObjects){
   })
   return output
 }
+
 // DOM Builder
 function setDomAttributes(dom, attrs){
   if(!attrs) return dom
@@ -62,7 +61,11 @@ function setDomAttributes(dom, attrs){
 function buildSingleDom(document, obj){
   // detect tag
   var tag = obj.tag
-  tag = (tag === "*") ? "div" : tag;
+  switch(tag){
+    case "*":
+      tag = "div" // defalt.
+      break;
+  }
 
   // create element
   var dom = document.createElement(tag)
@@ -93,27 +96,3 @@ function buildDom(selectorObj){
 }
 
 //util
-
-function parseSelector(selector){
-  var parsed = slick.parse(selector)
-  // In Slick documentation, parse function return array.
-  // but actually return object...
-  parsed = objToArr(parsed)
-  var array = []
-  parsed.forEach(function(i){
-    array.push(objToArr(i))
-  })
-  return array
-}
-
-function objToArr(obj){
-  var arr = []
-  Object.keys(obj).forEach(function(key){
-    if(key === "length"){
-      return
-    }
-    arr.push(obj[key])
-  })
-  return arr
-  
-}
