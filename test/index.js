@@ -1,8 +1,12 @@
 var migawari = require('../index.js')
 var assert = require('assert')
 
-var t = function(selector, html){
-  it(selector, function(){
+var assertCssSelector = function(selector, html){
+
+}
+var t = function(selector, html, comment){
+  comment = comment || ""
+  it(selector +" "+ comment,  function(){
     assert.equal(migawari(selector), html)
   })
 }
@@ -13,15 +17,14 @@ describe('basics', function(){
   t('.foo','<div class="foo"></div>')
   t('a.foo','<a class="foo"></a>')
   t('.foo.bar','<div class="bar foo"></div>')
-  t('.foo, .bar','<div class="foo"></div><div class="bar"></div>')
+  t('.foo, .bar','<div class="foo"></div><div class="bar"></div>', 'ppp')
   t('#someid','<div id="someid"></div>')
 })
 describe('combinators', function(){
-/*  t('a > b','<a><b></b></a>')
+  t('a > b','<a><b></b></a>')
   t('.foo .bar','<div class="foo"><div class="bar"></div></div>')
   t('a + b','<a></a><b></b>')
-  */
-  t('.a .b + .c','<div class="a"><div class="b></div><div class="c"></div></div>')
+  t('.a .b + .c','<div class="a"><div class="b"></div><div class="c"></div></div>')
 
 })
 

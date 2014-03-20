@@ -7,7 +7,7 @@ var tree = require('../lib/combinator')
 // + b
 // + c
 describe('', function(){
-  it('', function(){
+  it('a b + c', function(){
     var mock =[
       [
         { name:"a", combinator: ' '},
@@ -31,6 +31,21 @@ describe('', function(){
       }]
     }
     assert.deepEqual( tree(mock), expect)
-    
+  })
+  it('a, b', function(){
+    var mock = [
+      [ { name : "a", combinator: ' ' } ],
+      [ { name : "b", combinator: ' '} ]
+    ]
+    var expect = {
+      children : [{
+        selector : { name : "a", combinator: ' ' },
+        children :[]
+      }, {
+        selector : { name : "b", combinator: ' ' },
+        children :[]
+      }]
+    }
+    assert.deepEqual( tree(mock), expect)
   })
 })
