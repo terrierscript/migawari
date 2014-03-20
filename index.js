@@ -1,38 +1,19 @@
 //var defaults = require('defaults')
 var parser = require('./lib/parser')
 var build = require('./lib/build')
+var combinator = require('./lib/combinator')
+
 module.exports = function(selector){
   var htmls = []
   var parsed = parser(selector)
-  parsed = combinatorProc(parsed)
+  var util = require('util')
+  //parsed = combinator(parsed)
   parsed.forEach(function(selectorObj){
     htmls.push(build(selectorObj).innerHTML)
   })
   return htmls.join("")
 }
 
-function combinatorProc(selectorObjects){
-  var output = []
-  selectorObjects.forEach(function(selectorBlock){
-    var processed = []
-    var after = []
-    selectorBlock.forEach(function(selector){
-      switch(selector.combinator){
-        case '+':
-          after.push(selector)
-          break
-        default:
-          processed.push(selector)
-      }
-    })
-    // push
-    output.push(processed)
-    if(after.length > 0){
-      output.push(after)
-    }
-  })
-  return output
-}
 
 // DOM Builder
 function setDomAttributes(dom, attrs){
