@@ -23,17 +23,18 @@
   },
   "homepage": "https://github.com/suisho/migawari",
   "dependencies": {
-    "mocha": "^1.18.2",
-    "css-parse": "^1.7.0",
-    "slick": "^1.11.0",
-    "defaults": "^1.0.0",
-    "jsdom": "^0.10.3",
-    "cheerio": "^0.13.1"
+    "mocha": "~1.18.2",
+    "css-parse": "~1.7.0",
+    "slick": "~1.11.0",
+    "defaults": "~1.0.0",
+    "jsdom": "~0.10.3",
+    "cheerio": "~0.13.1"
   },
   "devDependencies": {
-    "microtime": "^0.5.1",
-    "coveralls": "^2.10.0",
+    "microtime": "~0.5.1",
+    "coveralls": "~2.10.0",
     "mocha-lcov-reporter": "0.0.1",
-    "istanbul": "^0.2.6"
+    "istanbul": "~0.2.6",
+    "profiler": "~1.2.1"
   }
 }
