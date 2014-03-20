@@ -1,8 +1,12 @@
 var migawari = require('../index.js')
 var assert = require('assert')
 
-var t = function(selector, html){
-  it(selector, function(){
+var assertCssSelector = function(selector, html){
+
+}
+var t = function(selector, html, comment){
+  comment = comment || ""
+  it(selector +" "+ comment,  function(){
     assert.equal(migawari(selector), html)
   })
 }
