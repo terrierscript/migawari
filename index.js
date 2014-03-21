@@ -2,10 +2,16 @@
 var parser = require('./lib/parser')
 var build = require('./lib/build')
 var combinator = require('./lib/combinator')
-
-module.exports = function(selector){
+var defaults = require('defaults')
+module.exports = function(selector, opts){
+  var options = defaults(opts, {
+    text : null
+  })
   var htmls = []
+  // slick : selector parser
   var parsed = parser(selector)
+  // reconstruct ree
   var tree = combinator(parsed)
-  return build(tree)
+  // do build
+  return build(tree, options)
 }
