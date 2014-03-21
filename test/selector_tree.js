@@ -1,6 +1,6 @@
 var util = require('util')
 var assert = require('assert')
-var tree = require('../lib/combinator')
+var tree = require('../lib/selector/tree')
 // console.log(JSON.stringify(result, null, 2))
 
 // a
