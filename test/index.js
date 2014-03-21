@@ -12,19 +12,19 @@ var t = function(selector, html, comment){
 }
 
 describe('basics', function(){
-  t('a','<a></a>')
+  t('a','<a></a>', 'only tag')
   t('*','<div></div>')
-  t('.foo','<div class="foo"></div>')
-  t('a.foo','<a class="foo"></a>')
-  t('.foo.bar','<div class="bar foo"></div>')
-  t('.foo, .bar','<div class="foo"></div><div class="bar"></div>', 'ppp')
-  t('#someid','<div id="someid"></div>')
+  t('.foo','<div class="foo"></div>', 'only class')
+  t('a.foo','<a class="foo"></a>','class and tag')
+  t('.foo.bar','<div class="bar foo"></div>', 'multi classes')
+  t('.foo, .bar','<div class="foo"></div><div class="bar"></div>', 'parallel classes')
+  t('#someid','<div id="someid"></div>', 'id')
 })
 describe('combinators', function(){
-  t('a > b','<a><b></b></a>')
-  t('.foo .bar','<div class="foo"><div class="bar"></div></div>')
-  t('a + b','<a></a><b></b>')
-  t('.a .b + .c','<div class="a"><div class="b"></div><div class="c"></div></div>')
+  t('a > b','<a><b></b></a>', 'child')
+  t('a b','<a><b></b></a>', 'ancestor')
+  t('a + b','<a></a><b></b>', 'sibilings')
+  t('a b + p','<a><b></b><p></p></a>', 'ancestor and sibilings')
 
 })
 
