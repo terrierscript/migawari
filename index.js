@@ -12,6 +12,11 @@ module.exports = function(selector, opts){
   var parsed = parser(selector)
   // reconstruct ree
   var parsedTree = tree(parsed)
+  // set fake root container selector
+  parsedTree.selector = {
+    text : ""
+  }
+  
   // do build
   return build(parsedTree, options)
 }
