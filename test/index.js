@@ -1,13 +1,16 @@
 var migawari = require('../index.js')
 var assert = require('assert')
-
-var assertCssSelector = function(selector, html){
-
+var cheerio = require('cheerio')
+var assertCssSelector = function(selector){
+  var html = migawari(selector)
+  var $ = cheerio.load("<html>"+html+"</html>")
+  assert($(selector).length > 0)
 }
 var t = function(selector, html, comment){
   comment = comment || ""
   it(selector +" "+ comment,  function(){
     assert.equal(migawari(selector), html)
+    assertCssSelector(selector)
   })
 }
 
@@ -20,6 +23,7 @@ describe('basics', function(){
   t('.foo, .bar','<div class="foo"></div><div class="bar"></div>', 'parallel classes')
   t('#someid','<div id="someid"></div>', 'id')
 })
+
 describe('combinators', function(){
   t('a > b','<a><b></b></a>', 'child')
   t('a b','<a><b></b></a>', 'ancestor')
