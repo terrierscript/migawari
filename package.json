@@ -34,6 +34,7 @@
     "coveralls": "~2.10.0",
     "mocha-lcov-reporter": "0.0.1",
     "istanbul": "~0.2.6",
-    "profiler": "~1.2.1"
+    "profiler": "~1.2.1",
+    "flatten": "0.0.1"
   }
 }
