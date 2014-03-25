@@ -4,7 +4,7 @@ var request = require('request')
 var parse = require('css').parse
 var assertLib = require('./assertLib')
 var flatten = require('flatten')
-var glyphReplace = require('./glyph_replace')
+var pseudopseudo = require('pseudopseudo')
 
 function getSelectors(ast){
   var rules = ast.stylesheet.rules.filter(function(rule){
@@ -22,9 +22,9 @@ urls.forEach(function(url){
         var ast = parse(css)
         var selectors = getSelectors(ast)
         selectors.forEach(function(selector){
-          selector = glyphReplace.replace(selector)
-          //console.log(selector)
-          assertLib(selector)
+          var dummySelector = pseudopseudo.replace(selector)
+          console.log(selector)
+          assertLib(dummySelector)
         })
         done()
       })
