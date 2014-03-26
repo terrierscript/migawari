@@ -26,7 +26,6 @@ describe('combinators', function(){
   t('a + b', 'sibilings')
   t('a b + p', 'ancestor and sibilings')
   t('.a + b .c ', 'sibilings ancestor')
-
 })
 
 describe('attributes', function(){
@@ -37,4 +36,15 @@ describe('attributes', function(){
   t('a.foo[href=hoge][title="fuga"]')
   t('a.foo[href]')
   t('a.foo[class="baz"]', 'attr has class')
+})
+
+describe("option", function(){
+  it("data", function(){
+    var sl ="div .a"
+    var html = migawari(sl, function($elm, selector) {
+      $elm.attr("data-selector", sl)
+      //return $elm
+    })
+    console.log(html)
+  })
 })

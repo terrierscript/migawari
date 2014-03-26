@@ -3,10 +3,7 @@ var parser = require('./lib/parser')
 var build = require('./lib/build')
 var tree = require('./lib/selector/tree')
 var defaults = require('defaults')
-module.exports = function(selector, opts){
-  var options = defaults(opts, {
-    text : null
-  })
+module.exports = function(selector, customFilter){
   var htmls = []
   // slick : selector parser
   var parsed = parser(selector)
@@ -16,7 +13,7 @@ module.exports = function(selector, opts){
   parsedTree.selector = {
     text : ""
   }
-  
+
   // do build
-  return build(parsedTree, options)
+  return build(parsedTree, customFilter)
 }
