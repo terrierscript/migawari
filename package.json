@@ -36,6 +36,7 @@
     "istanbul": "~0.2.6",
     "profiler": "~1.2.1",
     "flatten": "0.0.1",
-    "require": "^0.5.0"
+    "require": "^0.5.0",
+    "request": "^2.34.0"
   }
 }
