@@ -27,7 +27,8 @@
     "css-parse": "~1.7.0",
     "slick": "~1.11.0",
     "defaults": "~1.0.0",
-    "cheerio": "~0.13.1"
+    "cheerio": "~0.13.1",
+    "htmlparser2": "^3.7.1"
   },
   "devDependencies": {
     "microtime": "~0.5.1",
