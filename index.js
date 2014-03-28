@@ -17,3 +17,8 @@ module.exports = function(selector, customFilter){
   // do build
   return build(parsedTree, customFilter)
 }
+
+module.exports.domtree = function(selector, customFilter){
+  var parsed = parser(selector)
+  return tree(parsed)
+}
