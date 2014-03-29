@@ -1,6 +1,7 @@
 var migawari = require('../index.js')
 var assert = require('assert')
 var cheerio = require('cheerio')
+
 module.exports = function(selector){
   var html = migawari(selector)
   var $ = cheerio.load("<html>"+html+"</html>")
