@@ -1,4 +1,3 @@
-var util = require('util')
 var assert = require('assert')
 var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
@@ -32,7 +31,10 @@ var filter = function(tree){
   })
   return wrap.item
 }
-
+var dump = function(obj){
+  var util = require('util')
+  console.log(util.inspect(obj, {depth: null}))
+}
 
 var itTree = function(selector, expect){
   it(selector, function(){
@@ -42,6 +44,9 @@ var itTree = function(selector, expect){
 var assertTree = function(selector, expect){
   var p = parser(selector)
   var t = filter(tree(p))
+  var dbg = traverse(t).reduce(function(acc, t){
+    return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
+  })
   assert.deepEqual(expect, t)
 }
 // a
@@ -69,6 +74,31 @@ describe('tree', function(){
       }]
     }]
   })
+  itTree("a ~ p", {
+    name : "div",
+    children : [{
+      name : "a",
+      children : []
+    },{
+      name : "div", //dummy
+      children : []
+    },{
+      name : "p",
+      children : []
+    }]
+  })
+  itTree("a , b", {
+    name : "div",
+    children : [{
+      name : "a",
+      children : []
+    },{
+      name : "b",
+      children : []
+    }]
+
+  })
+
   itTree("a > b + p", {
     name :"div",
     children : [{
@@ -82,6 +112,4 @@ describe('tree', function(){
       }]
     }]
   })
-  it("a ~ p")
-  it("a , b")
 })
