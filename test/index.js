@@ -38,7 +38,7 @@ describe('attributes', function(){
   // jquery not supported?
   // t('a.foo[class="baz"]', 'attr has class')
 })
-
+/*
 describe("option", function(){
   it("data", function(){
     var sl ="div .a"
@@ -46,6 +46,6 @@ describe("option", function(){
       $elm.attr("data-selector", sl)
       //return $elm
     })
-    console.log(html)
   })
 })
+*/
