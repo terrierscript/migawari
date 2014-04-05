@@ -24,7 +24,9 @@
   "homepage": "https://github.com/suisho/migawari",
   "dependencies": {
     "CSSwhat": "^0.4.5",
+    "cheerio": "^0.14.0",
     "css-parse": "^1.7.0",
+    "domutils": "^1.4.3",
     "traverse": "^0.6.6"
   },
   "devDependencies": {
