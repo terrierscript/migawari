@@ -1,7 +1,6 @@
 var migawari = require('../index.js')
 var assert = require('assert')
 var cheerio = require('cheerio')
-var assertCssSelector = require("./assertLib")
 
 var assertSelector = function(selector, html){
   var $ = cheerio.load("<html>"+html+"</html>")

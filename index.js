@@ -1,6 +1,5 @@
 //var defaults = require('defaults')
 var parser = require('./lib/parser')
-var build = require('./lib/build')
 var tree = require('./lib/selector/tree')
 var defaults = require('defaults')
 var render = require('cheerio/lib/render')
