@@ -2,6 +2,17 @@ var migawari = require('../index.js')
 var assert = require('assert')
 var cheerio = require('cheerio')
 var assertCssSelector = require("./assertLib")
+
+var assertSelector = function(selector, html){
+  var $ = cheerio.load("<html>"+html+"</html>")
+  assert($(selector).length > 0, selector + " is not hit in " + html)
+}
+
+var assertCssSelector = function(selector){
+  var html = migawari(selector)
+  assertSelector(selector, html)
+}
+
 var t = function(selector, comment){
   comment = comment || ""
   it(selector +" "+ comment,  function(){
@@ -38,14 +49,7 @@ describe('attributes', function(){
   // jquery not supported?
   // t('a.foo[class="baz"]', 'attr has class')
 })
-/*
-describe("option", function(){
-  it("data", function(){
-    var sl ="div .a"
-    var html = migawari(sl, function($elm, selector) {
-      $elm.attr("data-selector", sl)
-      //return $elm
-    })
-  })
+
+describe("dummy", function(){
+
 })
-*/
