@@ -16,11 +16,11 @@ var Migawari = function(selector){
     dom.children = x.children
     return dom
   })
-  this.domTree = domTree.children
+  this.dom = domTree.children
 }
 
 Migawari.prototype.toString = function(){
-  return render(this.domTree)
+  return render(this.dom)
 }
 
 module.exports = function(selector){
