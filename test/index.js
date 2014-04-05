@@ -9,7 +9,7 @@ var hitSelector = function(selector, html){
 
 var assertCssSelector = function(selector){
   var html = migawari(selector)
-  assertSelector(hitSelector(selector, html),selector + " is not hit in " + html)
+  assert(hitSelector(selector, html), selector + " is not hit in " + html)
 }
 
 var t = function(selector, comment){
