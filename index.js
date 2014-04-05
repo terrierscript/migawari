@@ -3,22 +3,20 @@ var parser = require('./lib/parser')
 var build = require('./lib/build')
 var tree = require('./lib/selector/tree')
 var defaults = require('defaults')
+var render = require('cheerio/lib/render')
 
-module.exports = function(selector, customFilter){
-  // slick : selector parser
-  var parsed = parser(selector)
-  // reconstruct ree
-  var parsedTree = tree(parsed)
-  // set fake root container selector
-  parsedTree.selector = {
-    text : ""
-  }
+var Migawari = function(selector){
+  this.selector = selector
+  this.parsed = parser(selector)
+  // function
+  this.domTree = tree(this.parsed)
 
-  // do build
-  return build(parsedTree, customFilter)
 }
 
-module.exports.domtree = function(selector, customFilter){
-  var parsed = parser(selector)
-  return tree(parsed)
+Migawari.prototype.toString = function(){
+  return render(this.domTree)
+}
+
+module.exports = function(selector){
+  return new Migawari(selector)
 }
