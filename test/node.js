@@ -16,7 +16,7 @@ describe('node output', function(){
     assert.equal( createNode(".foo"), '<div class="foo"></div>')
   })
   it('class attr', function(){
-    assert.equal( createNode('.foo[class="bar"]'), '<div class="bar foo"></div>')
+    assert.equal( createNode('.foo[class="bar"]'), '<div class="foo bar"></div>')
   })
   it("id", function(){
     assert.equal( createNode('#baz'), '<div id="baz"></div>')
