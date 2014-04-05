@@ -3,7 +3,7 @@ var assert = require("assert")
 describe("parser", function(){
   it("", function(){
     var result = parser("a b + .c > #d ~ .e[f='g'],.h")
-    console.log(require("util").inspect(result, {depth :null}))
+    //console.log(require("util").inspect(result, {depth :null}))
     var expect = [ [ { tag: { type: 'tag', name: 'a' },
       combinator: { type: 'child' },
       attributes: [] },
