@@ -1,9 +1,9 @@
 var parser = require('./lib/parser')
 var tree = require('./lib/selector/tree')
 var node = require("./lib/selector/node")
-var defaults = require('defaults')
 var render = require('cheerio/lib/render')
 var traverse = require("traverse")
+
 var Migawari = function(selector){
   this.selector = selector
   parsed = parser(selector)
