@@ -31,8 +31,8 @@ var assertTree = function(selector, expect){
   var p = parser(selector)
   var tr = tree(p)
   var t = testable(tr)
-  //dump(tr)
-  dump(t)
+  //console.log(selector)
+  //dump(t)
 
   var dbg = traverse(t).reduce(function(acc, t){
     return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
