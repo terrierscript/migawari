@@ -1,6 +1,6 @@
 {
   "name": "migawari",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Create virtual HTML Element from css selctor",
   "main": "index.js",
   "scripts": {
