@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/suisho/migawari",
   "dependencies": {
+    "CSSwhat": "^0.4.5",
     "cheerio": "~0.13.1",
     "css-parse": "~1.7.0",
     "defaults": "~1.0.0",
