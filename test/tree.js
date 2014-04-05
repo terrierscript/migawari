@@ -12,7 +12,7 @@ var testable = function(tree){
   return traverse(tree).map(function(x){
     if(!x || !x.selector) return x;
     return {
-      tag : x.selector.tag,
+      name : x.selector.tag,
       children : x.children
     }
   })
@@ -22,7 +22,6 @@ var assertTree = function(selector, expect){
   var p = parser(selector)
   var tr = tree(p)
   var t = testable(tr)
-  console.log(t)
   var dbg = traverse(t).reduce(function(acc, t){
     return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
   })
