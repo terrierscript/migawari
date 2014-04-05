@@ -1,4 +1,5 @@
-# Migawari
+# Migawari ![travis](https://travis-ci.org/suisho/migawari.svg)
+
 > Create html from css query selector.
 
 ## Sample Usage
