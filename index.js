@@ -1,6 +1,6 @@
 var parser = require('./lib/parser')
 var tree = require('./lib/selector/tree')
-var node = require("./lib/selector/node")
+var leaf = require("./lib/selector/leaf")
 var render = require('cheerio/lib/render')
 var traverse = require("traverse")
 
@@ -9,10 +9,10 @@ var Migawari = function(selector){
   parsed = parser(selector)
   var t = tree(parsed)
 
-  // node to dom
+  // dom
   domTree = traverse(t).map(function(x){
     if(!x || !x.children) return x;
-    var dom = node(x.selector)
+    var dom = leaf(x.selector)
     dom.children = x.children
     return dom
   })

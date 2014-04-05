@@ -1,14 +1,14 @@
-var node = require('../lib/selector/node')
+var leaf = require('../lib/selector/leaf')
 var parser = require("../lib/parser")
 var render = require('cheerio/lib/render')
 var assert = require('assert')
 
 var createNode = function(selector){
   var p = parser(selector)[0][0]
-  var n = node(p)
+  var n = leaf(p)
   return render(n)
 }
-describe('node output', function(){
+describe('leaf output', function(){
   it('only tag', function(){
     assert.equal( createNode("a"), "<a></a>")
   })

@@ -1,0 +1,5 @@
+/misc
+/test
+/performance
+.npmignore
+.travis.yml
