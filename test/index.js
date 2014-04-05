@@ -2,14 +2,14 @@ var migawari = require('../index.js')
 var assert = require('assert')
 var cheerio = require('cheerio')
 
-var assertSelector = function(selector, html){
+var hitSelector = function(selector, html){
   var $ = cheerio.load("<html>"+html+"</html>")
-  assert($(selector).length > 0, selector + " is not hit in " + html)
+  return ($(selector).length > 0)
 }
 
 var assertCssSelector = function(selector){
   var html = migawari(selector)
-  assertSelector(selector, html)
+  assertSelector(hitSelector(selector, html),selector + " is not hit in " + html)
 }
 
 var t = function(selector, comment){
@@ -50,5 +50,15 @@ describe('attributes', function(){
 })
 
 describe("dummy", function(){
+  it("child", function(){
+    var html = migawari("a b")
+    assert.equal(true, hitSelector("a b", html))
+    assert.equal(false, hitSelector("a > b", html))
+  })
+  it("adjacent", function(){
+    var html = migawari("a ~ b")
+    assert.equal(true, hitSelector("a ~ b", html))
+    assert.equal(false, hitSelector("a + b", html))
+  })
 
 })
