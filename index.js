@@ -6,16 +6,17 @@ var render = require('cheerio/lib/render')
 var traverse = require("traverse")
 var Migawari = function(selector){
   this.selector = selector
-  this.parsed = parser(selector)
-  var t = tree(this.parsed)
+  parsed = parser(selector)
+  var t = tree(parsed)
 
   // node to dom
-  this.domTree = traverse(t).map(function(x){
+  domTree = traverse(t).map(function(x){
     if(!x || !x.children) return x;
     var dom = node(x.selector)
     dom.children = x.children
     return dom
   })
+  this.domTree = domTree.children
 }
 
 Migawari.prototype.toString = function(){
