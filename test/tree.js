@@ -9,27 +9,39 @@ var dump = function(obj){
 }
 
 var testable = function(tree){
-  return traverse(tree).map(function(x){
-    if(!x || !x.selector) return x;
+  var wrap = {
+    obj : tree
+  }
+  return traverse(wrap).map(function(x){
+    if(!x || !x.children) return x;
+    var name = undefined
+    try{
+      name = x.selector.tag.name
+    }catch(e){
+      name = "*"
+    }
     return {
-      name : x.selector.tag,
+      name : name,
       children : x.children
     }
-  })
+  }).obj
 }
 
 var assertTree = function(selector, expect){
   var p = parser(selector)
   var tr = tree(p)
   var t = testable(tr)
+  //dump(tr)
+  dump(t)
+
   var dbg = traverse(t).reduce(function(acc, t){
     return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
   })
   assert.deepEqual(expect, t)
 }
 
-var itTree = function(selector, expect){
-  it(selector, function(){
+var itTree = function(selector, expect, memo){
+  it(selector + " " + memo, function(){
     assertTree(selector, expect)
   })
 }
@@ -96,5 +108,5 @@ describe('tree', function(){
         children : []
       }]
     }]
-  })
+  }, "dddd")
 })
