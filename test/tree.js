@@ -1,39 +1,32 @@
 var assert = require('assert')
 var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
-var render = require('cheerio/lib/render')
-
-
-// TODO: packaging
-var intersect = require("intersect")
 var traverse = require("traverse")
-var filter = function(tree){
-  var wrap = {
-    item : tree
-  }
-  var extractKeys = [
-    "name","children"
-  ]
-  traverse(wrap).forEach(function(){
 
-    if(typeof this.node !== "object") return
-    if(this.isRoot) return
-    var objectKeys = Object.keys(this.node)
-    var keys = intersect(extractKeys, objectKeys)
-    if(keys.length < extractKeys.length) return // TODO
-    var newObj = {}
-    var node = this.node
-    keys.forEach(function(k){
-      newObj[k] = node[k]
-    })
-    //return newObj // for map
-    this.update(newObj)
-  })
-  return wrap.item
-}
 var dump = function(obj){
   var util = require('util')
   console.log(util.inspect(obj, {depth: null}))
+}
+
+var testable = function(tree){
+  return traverse(tree).map(function(x){
+    if(!x || !x.selector) return x;
+    return {
+      tag : x.selector.tag,
+      children : x.children
+    }
+  })
+}
+
+var assertTree = function(selector, expect){
+  var p = parser(selector)
+  var tr = tree(p)
+  var t = testable(tr)
+  console.log(t)
+  var dbg = traverse(t).reduce(function(acc, t){
+    return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
+  })
+  assert.deepEqual(expect, t)
 }
 
 var itTree = function(selector, expect){
@@ -41,20 +34,13 @@ var itTree = function(selector, expect){
     assertTree(selector, expect)
   })
 }
-var assertTree = function(selector, expect){
-  var p = parser(selector)
-  var t = filter(tree(p))
-  var dbg = traverse(t).reduce(function(acc, t){
-    return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
-  })
-  assert.deepEqual(expect, t)
-}
+
 // a
 // + b
 // + c
 describe('tree', function(){
   itTree("a", {
-    name : "div",
+    name : "*",
     children : [{
       name : "a",
       children : []
@@ -62,11 +48,11 @@ describe('tree', function(){
   })
 
   itTree("a b",{
-    name : "div",
+    name : "*",
     children : [{
       name : "a",
       children : [{
-        name : "div", //dummy
+        name : "*", //dummy
         children : [{
           name : "b",
           children :[]
@@ -75,12 +61,12 @@ describe('tree', function(){
     }]
   })
   itTree("a ~ p", {
-    name : "div",
+    name : "*",
     children : [{
       name : "a",
       children : []
     },{
-      name : "div", //dummy
+      name : "*", //dummy
       children : []
     },{
       name : "p",
@@ -88,7 +74,7 @@ describe('tree', function(){
     }]
   })
   itTree("a , b", {
-    name : "div",
+    name : "*",
     children : [{
       name : "a",
       children : []
@@ -100,7 +86,7 @@ describe('tree', function(){
   })
 
   itTree("a > b + p", {
-    name :"div",
+    name :"*",
     children : [{
       name : "a",
       children : [{
