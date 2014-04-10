@@ -3,20 +3,14 @@ var tree = require('./lib/selector/tree')
 var leaf = require("./lib/selector/leaf")
 var render = require('cheerio/lib/render')
 var traverse = require("traverse")
+var domutils = require("domutils")
+var clone = require("clone")
 
 var Migawari = function(selector){
   this.selector = selector
   parsed = parser(selector)
-  var t = tree(parsed)
-
-  // dom
-  domTree = traverse(t).map(function(x){
-    if(!x || !x.children) return x;
-    var dom = leaf(x.selector)
-    dom.children = x.children
-    return dom
-  })
-  this.dom = domTree.children
+  this.dom = tree(parsed)
+  //console.log(require("util").inspect(domTree, {depth:null}))
 }
 
 Migawari.prototype.toString = function(){

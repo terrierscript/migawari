@@ -3,12 +3,7 @@ var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
 var traverse = require("traverse")
 
-var dump = function(obj){
-  var util = require('util')
-  console.log(util.inspect(obj, {depth: null}))
-}
-
-var testable = function(tree){
+var getTestableTree = function(tree){
   var wrap = {
     obj : tree
   }
@@ -16,7 +11,7 @@ var testable = function(tree){
     if(!x || !x.children) return x;
     var name = undefined
     try{
-      name = x.selector.tag.name
+      name = x.name || "*"
     }catch(e){
       name = "*"
     }
@@ -30,9 +25,8 @@ var testable = function(tree){
 var assertTree = function(selector, expect){
   var p = parser(selector)
   var tr = tree(p)
-  var t = testable(tr)
-  //console.log(selector)
-  //dump(t)
+  var t = getTestableTree(tr)
+  //console.log(require("util").inspect(t, {depth:null}))
 
   var dbg = traverse(t).reduce(function(acc, t){
     return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
@@ -50,63 +44,47 @@ var itTree = function(selector, expect, memo){
 // + b
 // + c
 describe('tree', function(){
-  itTree("a", {
-    name : "*",
-    children : [{
-      name : "a",
-      children : []
-    }]
-  })
+  itTree("a", [{
+    name : "a",
+    children : []
+  }])
 
-  itTree("a b",{
-    name : "*",
+  itTree("a b",[{
+    name : "a",
     children : [{
-      name : "a",
+      name : "div", //dummy
       children : [{
-        name : "*", //dummy
-        children : [{
-          name : "b",
-          children :[]
-        }]
+        name : "b",
+        children :[]
       }]
     }]
-  })
-  itTree("a ~ p", {
-    name : "*",
+  }])
+  itTree("a ~ p", [{
+    name : "a",
+    children : []
+  },{
+    name : "div", //dummy
+    children : []
+  },{
+    name : "p",
+    children : []
+  }])
+  itTree("a , b", [{
+    name : "a",
+    children : []
+  },{
+    name : "b",
+    children : []
+  }])
+
+  itTree("a > b + p", [{
+    name : "a",
     children : [{
-      name : "a",
+      name : "b",
       children : []
-    },{
-      name : "*", //dummy
-      children : []
-    },{
+    }, {
       name : "p",
       children : []
     }]
-  })
-  itTree("a , b", {
-    name : "*",
-    children : [{
-      name : "a",
-      children : []
-    },{
-      name : "b",
-      children : []
-    }]
-
-  })
-
-  itTree("a > b + p", {
-    name :"*",
-    children : [{
-      name : "a",
-      children : [{
-        name : "b",
-        children : []
-      }, {
-        name : "p",
-        children : []
-      }]
-    }]
-  }, "dddd")
+  }], "dddd")
 })

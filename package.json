@@ -25,6 +25,7 @@
   "dependencies": {
     "CSSwhat": "^0.4.5",
     "cheerio": "^0.14.0",
+    "clone": "^0.1.11",
     "css-parse": "^1.7.0",
     "domutils": "^1.4.3",
     "traverse": "^0.6.6"
