@@ -9,11 +9,8 @@ var clone = require("clone")
 var Migawari = function(selector){
   this.selector = selector
   parsed = parser(selector)
-  var domTree = tree(parsed)
-
+  this.dom = tree(parsed)
   //console.log(require("util").inspect(domTree, {depth:null}))
-
-  this.dom = domTree.children
 }
 
 Migawari.prototype.toString = function(){

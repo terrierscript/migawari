@@ -26,7 +26,6 @@ var assertTree = function(selector, expect){
   var p = parser(selector)
   var tr = tree(p)
   var t = getTestableTree(tr)
-  //console.log(selector)
   //console.log(require("util").inspect(t, {depth:null}))
 
   var dbg = traverse(t).reduce(function(acc, t){
@@ -45,27 +44,21 @@ var itTree = function(selector, expect, memo){
 // + b
 // + c
 describe('tree', function(){
-  itTree("a", {
-    name : "*",
-    children : [{
-      name : "a",
-      children : []
-    }]
-  })
+  itTree("a", [{
+    name : "a",
+    children : []
+  }])
 
-  itTree("a b",{
-    name : "*",
+  itTree("a b",[{
+    name : "a",
     children : [{
-      name : "a",
+      name : "div", //dummy
       children : [{
-        name : "div", //dummy
-        children : [{
-          name : "b",
-          children :[]
-        }]
+        name : "b",
+        children :[]
       }]
     }]
-  })
+  }])
   itTree("a ~ p", {
     name : "*",
     children : [{

@@ -3,6 +3,7 @@ var assert = require('assert')
 var htmlparser = require("htmlparser2");
 
 describe('asset dom', function(){
+
   var reparse = function(selector){
     var m = migawari(selector)
     var p = htmlparser.parseDOM(m.toString())
@@ -16,4 +17,7 @@ describe('asset dom', function(){
   it("basic", function(){
     assertDOM("a")
   })
+  /*it("fn", function(){
+    //migawari("a>b+p")
+  })*/
 })
