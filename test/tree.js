@@ -3,12 +3,7 @@ var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
 var traverse = require("traverse")
 
-var dump = function(obj){
-  var util = require('util')
-  console.log(util.inspect(obj, {depth: null}))
-}
-
-var testable = function(tree){
+var getTestableTree = function(tree){
   var wrap = {
     obj : tree
   }
@@ -16,7 +11,7 @@ var testable = function(tree){
     if(!x || !x.children) return x;
     var name = undefined
     try{
-      name = x.selector.tag.name
+      name = x.name || "*"
     }catch(e){
       name = "*"
     }
@@ -30,9 +25,9 @@ var testable = function(tree){
 var assertTree = function(selector, expect){
   var p = parser(selector)
   var tr = tree(p)
-  var t = testable(tr)
+  var t = getTestableTree(tr)
   //console.log(selector)
-  //dump(t)
+  //console.log(require("util").inspect(t, {depth:null}))
 
   var dbg = traverse(t).reduce(function(acc, t){
     return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
@@ -63,7 +58,7 @@ describe('tree', function(){
     children : [{
       name : "a",
       children : [{
-        name : "*", //dummy
+        name : "div", //dummy
         children : [{
           name : "b",
           children :[]
@@ -77,7 +72,7 @@ describe('tree', function(){
       name : "a",
       children : []
     },{
-      name : "*", //dummy
+      name : "div", //dummy
       children : []
     },{
       name : "p",
