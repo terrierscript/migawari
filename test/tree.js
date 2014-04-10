@@ -59,42 +59,32 @@ describe('tree', function(){
       }]
     }]
   }])
-  itTree("a ~ p", {
-    name : "*",
+  itTree("a ~ p", [{
+    name : "a",
+    children : []
+  },{
+    name : "div", //dummy
+    children : []
+  },{
+    name : "p",
+    children : []
+  }])
+  itTree("a , b", [{
+    name : "a",
+    children : []
+  },{
+    name : "b",
+    children : []
+  }])
+
+  itTree("a > b + p", [{
+    name : "a",
     children : [{
-      name : "a",
+      name : "b",
       children : []
-    },{
-      name : "div", //dummy
-      children : []
-    },{
+    }, {
       name : "p",
       children : []
     }]
-  })
-  itTree("a , b", {
-    name : "*",
-    children : [{
-      name : "a",
-      children : []
-    },{
-      name : "b",
-      children : []
-    }]
-
-  })
-
-  itTree("a > b + p", {
-    name :"*",
-    children : [{
-      name : "a",
-      children : [{
-        name : "b",
-        children : []
-      }, {
-        name : "p",
-        children : []
-      }]
-    }]
-  }, "dddd")
+  }], "dddd")
 })
