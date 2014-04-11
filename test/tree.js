@@ -9,11 +9,10 @@ var getTestableTree = function(tree){
   }
   return traverse(wrap).map(function(x){
     if(!x || !x.children) return x;
-    var name = undefined
+    var name = null
     try{
-      name = x.name || "*"
+      name = x.name
     }catch(e){
-      name = "*"
     }
     return {
       name : name,
@@ -52,7 +51,7 @@ describe('tree', function(){
   itTree("a b",[{
     name : "a",
     children : [{
-      name : "div", //dummy
+      name : null, //dummy
       children : [{
         name : "b",
         children :[]
@@ -63,7 +62,7 @@ describe('tree', function(){
     name : "a",
     children : []
   },{
-    name : "div", //dummy
+    name : null, //dummy
     children : []
   },{
     name : "p",
