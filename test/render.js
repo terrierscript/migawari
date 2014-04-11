@@ -12,7 +12,6 @@ describe("render", function(){
       assert.equal(migawari(selector).toString(), html)
     })
     // if update readme
-    assert.equal(migawari(".c").toString({dummyTagName: "span"}), '<span class="c"></span>')
     //readmeOutput(selector,html)
   }
   itAssert("a",'<a></a>')
@@ -29,7 +28,8 @@ describe("render", function(){
 })
 describe("default tag", function(){
   it("defaultTag Option", function(){
-    assert.equal(migawari("a b ~ p").toString({dummyTagName: "span"}),"<a><span><b></b><span></span><p></p></span></a>")
-    assert.equal(migawari(".c").toString({dummyTagName: "span"}), '<span class="c"></span>')
+    assert.equal(migawari("a b ~ p", {dummy: "i"}).toString(),
+      "<a><i><b></b><i></i><p></p></i></a>")
+    assert.equal(migawari(".c",  {dummy: "span"}).toString(), '<span class="c"></span>')
   })
 })
