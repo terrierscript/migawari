@@ -6,18 +6,17 @@
 
 ```js
 var migawari = require("migawari")
-console.log('a');	   //<a></a>
-console.log('.c');	  //<div class="c"></div>
-console.log('#d');	  //<div id="d"></div>
-console.log('a[title='foo']');	//<a title="foo"></a>
-console.log('a > b');	//<a><b></b></a>
-console.log('a , b');	//<a></a><b></b>
-console.log('a + b');	//<a></a><b></b>
-console.log('a > b + .c');	//<a><b></b><div class="c"></div></a>
+migawari('a');	//<a></a>
+migawari('.c');	//<div class="c"></div>
+migawari('#d');	//<div id="d"></div>
+migawari('a[title='foo']');	//<a title="foo"></a>
+migawari('a > b');	//<a><b></b></a>
+migawari('a , b');	//<a></a><b></b>
+migawari('a + b');	//<a></a><b></b>
+migawari('a > b + .c');	//<a><b></b><div class="c"></div></a>
+migawari('a ~ b');	//<a></a><div></div><b></b>
+migawari('a b');	//<a><div><b></b></div></a>
 
-// descendant and siblings insert dummy
-console.log('a ~ b');	//<a></a><div></div><b></b>
-console.log('a b');	//<a><div><b></b></div></a>
 ```
 
 ## API
