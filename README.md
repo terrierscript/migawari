@@ -24,23 +24,24 @@ migawari('a b');	//<a><div><b></b></div></a>
 
 # API
 
-## toString([option])
-
-Output html.
-
-### option.dummyTagName (default=div)
-
+## option.dummy (default=div)
 Change dummy tag name.
 
 sample:
 
 ```js
-migawari("a b ~ p").toString({dummyTagName:"span"})
+migawari("a b ~ p",{dummy:"span"}).toString()
 // => <a><span><b></b><span></span><p></p></span></a>
 
-migawari(".c").toString({dummyTagName: "span"})
+migawari(".c", {dummy: "span"}).toString()
 // => '<span class="c"></span>'
 ```
+
+
+## toString()
+
+Output html.
+
 ## dom
 
 Return Dom object for [htmlparser2](https://github.com/fb55/htmlparser2)
