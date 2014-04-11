@@ -1,13 +1,20 @@
 var migawari = require("../index")
 var assert = require("assert")
-var itAssert = function(selector, html){
-  it(selector, function(){
-    assert.equal(migawari(selector).toString(), html)
-  })
-  // if update readme
-  console.log("console.log('" + selector + "');\t" +"//"+html )
+
+// for readme
+var readmeOutput = function(selector, html){
+  console.log("migawari('" + selector + "');\t" +"//"+html )
 }
+
 describe("render", function(){
+  var itAssert = function(selector, html){
+    it(selector, function(){
+      assert.equal(migawari(selector).toString(), html)
+    })
+    // if update readme
+    assert.equal(migawari(".c").toString({dummyTagName: "span"}), '<span class="c"></span>')
+    //readmeOutput(selector,html)
+  }
   itAssert("a",'<a></a>')
   itAssert(".c",'<div class="c"></div>')
   itAssert("#d",'<div id="d"></div>')
@@ -19,4 +26,10 @@ describe("render", function(){
   // descendant and sibilings insert dummy
   itAssert("a ~ b",'<a></a><div></div><b></b>')
   itAssert("a b",'<a><div><b></b></div></a>')
+})
+describe("default tag", function(){
+  it("defaultTag Option", function(){
+    assert.equal(migawari("a b ~ p").toString({dummyTagName: "span"}),"<a><span><b></b><span></span><p></p></span></a>")
+    assert.equal(migawari(".c").toString({dummyTagName: "span"}), '<span class="c"></span>')
+  })
 })

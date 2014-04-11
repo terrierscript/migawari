@@ -14,18 +14,34 @@ migawari('a > b');	//<a><b></b></a>
 migawari('a , b');	//<a></a><b></b>
 migawari('a + b');	//<a></a><b></b>
 migawari('a > b + .c');	//<a><b></b><div class="c"></div></a>
+
+// descendant and sibilings insert dummy
 migawari('a ~ b');	//<a></a><div></div><b></b>
 migawari('a b');	//<a><div><b></b></div></a>
 
+
 ```
 
-## API
+# API
 
-### toString()
+## toString([option])
 
 Output html.
 
-### dom
+### option.dummyTagName (default=div)
+
+Change dummy tag name.
+
+sample:
+
+```js
+migawari("a b ~ p").toString({dummyTagName:"span"})
+// => <a><span><b></b><span></span><p></p></span></a>
+
+migawari(".c").toString({dummyTagName: "span"})
+// => '<span class="c"></span>'
+```
+## dom
 
 Return Dom object for [htmlparser2](https://github.com/fb55/htmlparser2)
 If you want customize output. You can use this.

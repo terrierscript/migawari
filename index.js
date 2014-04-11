@@ -13,8 +13,9 @@ var Migawari = function(selector){
   //console.log(require("util").inspect(domTree, {depth:null}))
 }
 
-Migawari.prototype.toString = function(){
-  return render(this.dom)
+Migawari.prototype.toString = function(option){
+  option = option || {}
+  return render(this.dom, option.dummyTagName)
 }
 
 module.exports = function(selector){
