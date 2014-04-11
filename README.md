@@ -6,18 +6,18 @@
 
 ```js
 var migawari = require("migawari")
-console.log(migawari("a").toString())          // <a></a>
-console.log(migawari(".c").toString())         // <div class="c"></div>
-console.log(migawari("#d").toString())         // <div id="d"></div>
-console.log(migawari("a[title='foo']").toString()) // <a title="foo"></div>
-console.log(migawari("a > b").toString())      // <a><b</b></a>
-console.log(migawari("a , b").toString())      // <a></a><b</b>
-console.log(migawari("a + b").toString())      // <a></a><b</b>
-console.log(migawari("a > b + .c").toString()) // <a></a><b</b>
+console.log('a');	   //<a></a>
+console.log('.c');	  //<div class="c"></div>
+console.log('#d');	  //<div id="d"></div>
+console.log('a[title='foo']');	//<a title="foo"></a>
+console.log('a > b');	//<a><b></b></a>
+console.log('a , b');	//<a></a><b></b>
+console.log('a + b');	//<a></a><b></b>
+console.log('a > b + .c');	//<a><b></b><div class="c"></div></a>
 
 // descendant and siblings insert dummy
-console.log(migawari("a ~ b").toString())      // <a></a><div></div><b></b>
-console.log(migawari("a b").toString())        // <a><div><b</b></div></a>
+console.log('a ~ b');	//<a></a><div></div><b></b>
+console.log('a b');	//<a><div><b></b></div></a>
 ```
 
 ## API
