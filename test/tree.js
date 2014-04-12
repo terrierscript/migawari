@@ -3,6 +3,7 @@ var assert = require('assert');
 var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
 var traverse = require("traverse")
+var htmlparser = require("htmlparser2")
 
 var getTestableTree = function(tree){
   var wrap = {
@@ -24,8 +25,6 @@ var assertTree = function(selector, expect){
   var tr = tree(p)
   var t = getTestableTree(tr)
   //console.log(require("util").inspect(t, {depth:null}))
-
-
   assert.deepEqual(expect, t)
 }
 
@@ -114,4 +113,29 @@ describe('tree', function(){
       children : []
     }]
   }])
+})
+describe("htmlparser compatible", function(){
+  describe("parent", function(){
+    it("htmlparser is same cirucular strictly", function(){
+      var cp = htmlparser.parseDOM("<a><b></b></a>")[0]
+      assert.strictEqual(cp.children[0].parent, cp)
+    })
+    it("migwari is same cirucular strictly" , function(){
+      var p = parser("a b")
+      var tr = tree(p)[0]
+      assert.strictEqual(tr.children[0].parent, tr)
+    })
+  })
+  describe("brother", function(){
+    it("htmlparser is same cirucular strictly", function(){
+      var compatible = htmlparser.parseDOM("<a></a><b></b>")[0]
+      assert.strictEqual(compatible.next.prev, compatible)
+    })
+    it("migwari is same cirucular strictly" , function(){
+      var p = parser("a + b")
+      var tr = tree(p)[0]
+      console.log(tr)
+      assert.strictEqual(tr.next.prev, tr)
+    })
+  })
 })

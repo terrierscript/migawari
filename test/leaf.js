@@ -63,9 +63,11 @@ describe('leaf output', function(){
       next: null
     })
   })
-  it("htmlparser compatible", function(){
-    var leaf = createLeaf("a")
-    var compatible = htmlparser.parseDOM("<a></a>")[0]
-    assert.deepEqual(leaf, compatible)
+  describe("htmlparser compatible", function(){
+    it("basic", function(){
+      var leaf = createLeaf("a")
+      var compatible = htmlparser.parseDOM("<a></a>")[0]
+      assert.deepEqual(leaf, compatible)
+    })
   })
 })
