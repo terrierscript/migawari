@@ -2,7 +2,6 @@ var parser = require('./lib/parser')
 var tree = require('./lib/selector/tree')
 var leaf = require('./lib/selector/leaf')
 var render = require('./lib/render')
-var dummy = require("./lib/dummy")
 var defaults = require("defaults")
 
 var Migawari = function(selector, option){

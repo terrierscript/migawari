@@ -2,7 +2,6 @@ var assert = require('assert');
 
 var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
-var dummy = require("../lib/dummy")
 var traverse = require("traverse")
 var htmlparser = require("htmlparser2")
 
