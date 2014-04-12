@@ -1,6 +1,6 @@
 {
   "name": "migawari",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Create HTML Element from css selctor",
   "main": "index.js",
   "scripts": {
