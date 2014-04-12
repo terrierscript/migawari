@@ -16,7 +16,8 @@ var getTestableTree = function(tree){
     }
     return {
       name : name,
-      children : x.children
+      children : x.children,
+      next : x.next
     }
   }).obj
 }
@@ -45,7 +46,7 @@ var itTree = function(selector, expect, memo){
 describe('tree', function(){
   itTree("a", [{
     name : "a",
-    children : []
+    children : [],
   }])
 
   itTree("a b",[{
