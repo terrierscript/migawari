@@ -2,6 +2,7 @@ var assert = require('assert');
 
 var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
+var dummy = require("../lib/dummy")
 var traverse = require("traverse")
 var htmlparser = require("htmlparser2")
 
@@ -48,7 +49,7 @@ describe('tree', function(){
     name : "a",
     next : null,
     children : [{
-      name : null, //dummy
+      name : "div", //dummy
       next : null,
       children : [{
         name : "b",
@@ -60,7 +61,7 @@ describe('tree', function(){
   itTree("a ~ p", [{
     name : "a",
     next : {
-      name : null,
+      name : "div", //dummy
       next : {
         name : "p",
         next : null,
@@ -70,7 +71,7 @@ describe('tree', function(){
     },
     children : []
   },{
-    name : null,
+    name : "div", //dummy
     next : {
       name : "p",
       next : null,
@@ -134,7 +135,6 @@ describe("htmlparser compatible", function(){
     it("migwari is same cirucular strictly" , function(){
       var p = parser("a + b")
       var tr = tree(p)[0]
-      console.log(tr)
       assert.strictEqual(tr.next.prev, tr)
     })
   })

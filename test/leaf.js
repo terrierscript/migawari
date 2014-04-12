@@ -1,13 +1,17 @@
 var leaf = require('../lib/selector/leaf')
+
 var parser = require("../lib/parser")
 var assert = require('assert')
 var htmlparser = require("htmlparser2")
 var createLeaf = function(selector){
+  var generateLeaf = require('../lib/selector/leaf')()
+
   var p = parser(selector)[0][0]
-  var n = leaf(p)
+  var n = generateLeaf(p)
   return n
 }
 describe('leaf output', function(){
+
   it('only tag', function(){
     assert.deepEqual( createLeaf("a"), {
       type:"tag",
@@ -22,7 +26,7 @@ describe('leaf output', function(){
   it('only class', function(){
     assert.deepEqual( createLeaf(".foo"), {
       type: 'tag',
-      name: null,
+      name: "div",
       attribs: { class: 'foo' },
       children: [],
       parent: null,
@@ -33,7 +37,7 @@ describe('leaf output', function(){
   it('class attr', function(){
     assert.deepEqual( createLeaf('.foo[class="bar"]'),{
       type: 'tag',
-      name: null,
+      name: "div",
       attribs: { class: 'foo bar' },
       children: [],
       parent: null,
@@ -44,7 +48,7 @@ describe('leaf output', function(){
   it("id", function(){
     assert.deepEqual( createLeaf('#baz'), {
       type: 'tag',
-      name: null,
+      name: "div",
       attribs: { id: 'baz' },
       children: [],
       parent: null,
