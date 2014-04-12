@@ -21,8 +21,18 @@ migawari('a b');	//<a><div><b></b></div></a>
 
 
 ```
-
 # API
+
+## toString()
+
+Output html.
+
+## dom
+
+Return Dom object for [htmlparser2](https://github.com/fb55/htmlparser2)
+If you want customize output. You can use this.
+
+# Options
 
 ## option.dummy (default=div)
 Change dummy tag name.
@@ -36,13 +46,3 @@ migawari("a b ~ p",{dummy:"span"}).toString()
 migawari(".c", {dummy: "span"}).toString()
 // => '<span class="c"></span>'
 ```
-
-
-## toString()
-
-Output html.
-
-## dom
-
-Return Dom object for [htmlparser2](https://github.com/fb55/htmlparser2)
-If you want customize output. You can use this.
