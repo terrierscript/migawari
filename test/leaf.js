@@ -1,7 +1,7 @@
 var leaf = require('../lib/selector/leaf')
 var parser = require("../lib/parser")
 var assert = require('assert')
-
+var htmlparser = require("htmlparser2")
 var createLeaf = function(selector){
   var p = parser(selector)[0][0]
   var n = leaf(p)
@@ -62,5 +62,10 @@ describe('leaf output', function(){
       prev: null,
       next: null
     })
+  })
+  it("htmlparser compatible", function(){
+    var leaf = createLeaf("a")
+    var compatible = htmlparser.parseDOM("<a></a>")[0]
+    assert.deepEqual(leaf, compatible)
   })
 })

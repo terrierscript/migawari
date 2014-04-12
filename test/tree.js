@@ -1,4 +1,5 @@
-var assert = require('assert')
+var assert = require('assert');
+
 var tree = require('../lib/selector/tree')
 var parser = require("../lib/parser")
 var traverse = require("traverse")
@@ -9,14 +10,11 @@ var getTestableTree = function(tree){
   }
   return traverse(wrap).map(function(x){
     if(!x || !x.children) return x;
-    var name = null
-    try{
-      name = x.name
-    }catch(e){
-    }
+    //if(!x.name) return x;
     return {
-      name : name,
-      children : x.children
+      name : x.name,
+      children : x.children,
+      next : x.next
     }
   }).obj
 }
@@ -27,9 +25,7 @@ var assertTree = function(selector, expect){
   var t = getTestableTree(tr)
   //console.log(require("util").inspect(t, {depth:null}))
 
-  var dbg = traverse(t).reduce(function(acc, t){
-    return (this.isLeaf && typeof t === "string") ? acc + " "+ t : acc
-  })
+
   assert.deepEqual(expect, t)
 }
 
@@ -45,45 +41,77 @@ var itTree = function(selector, expect, memo){
 describe('tree', function(){
   itTree("a", [{
     name : "a",
-    children : []
+    children : [],
+    next : null,
   }])
 
   itTree("a b",[{
     name : "a",
+    next : null,
     children : [{
       name : null, //dummy
+      next : null,
       children : [{
         name : "b",
+        next : null,
         children :[]
       }]
     }]
   }])
   itTree("a ~ p", [{
     name : "a",
+    next : {
+      name : null,
+      next : {
+        name : "p",
+        next : null,
+        children : []
+      },
+      children : []
+    },
     children : []
   },{
-    name : null, //dummy
+    name : null,
+    next : {
+      name : "p",
+      next : null,
+      children : []
+    },
     children : []
   },{
     name : "p",
+    next : null,
     children : []
   }])
   itTree("a , b", [{
     name : "a",
+    next : {
+      name : "b",
+      next : null,
+      children :[]
+    },
     children : []
   },{
     name : "b",
+    next : null,
     children : []
   }])
 
   itTree("a > b + p", [{
     name : "a",
+    next : null,
     children : [{
       name : "b",
+      next : {
+        name : "p",
+        next : null,
+        children : []
+      },
       children : []
     }, {
       name : "p",
+      next : null,
       children : []
     }]
-  }], "dddd")
+  }])
 })
