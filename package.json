@@ -15,7 +15,7 @@
     "selector",
     "html",
     "mock",
-    "htmlparser"
+    "htmlparser",
     "dom"
   ],
   "author": "suisho",
@@ -33,9 +33,10 @@
     "domutils": "^1.4.3"
   },
   "devDependencies": {
-    "htmlparser2": "^3.7.1",
-    "mocha": "^1.18.2",
+    "cheerio": "^0.13.1",
     "flatten": "0.0.1",
-    "cheerio": "^0.13.1"
+    "htmlparser2": "^3.7.1",
+    "matcha": "^0.5.0",
+    "mocha": "^1.18.2"
   }
 }
