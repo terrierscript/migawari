@@ -14,7 +14,9 @@
     "css",
     "selector",
     "html",
-    "mock"
+    "mock",
+    "htmlparser"
+    "dom"
   ],
   "author": "suisho",
   "license": "ISC",
