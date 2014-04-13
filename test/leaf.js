@@ -67,6 +67,8 @@ describe('leaf output', function(){
       next: null
     })
   })
+  
+  // TODO: remove
   describe("htmlparser compatible", function(){
     it("basic", function(){
       var leaf = createLeaf("a")
