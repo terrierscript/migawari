@@ -20,6 +20,7 @@ var MigawariView = Backbone.View.extend({
   initialize: function(){
     this.resultView = new ResultView()
     this.$input = $("input.selector")
+    this.$input.focus()
   },
   el : ".console",
   events: {

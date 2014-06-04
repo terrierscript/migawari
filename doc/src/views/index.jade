@@ -11,15 +11,26 @@ html
     link(href="//fonts.googleapis.com/css?family=Joti+One:400", rel="stylesheet", type="text/css")
 
   body
-    h1 
-      a(href="http://github.com/suisho/migawari") Migawari
+    header
+      h1 
+        a(href="http://github.com/suisho/migawari") Migawa
+          span.r r
+          | i
+      section.description
+        | Regenerate HTML from CSS selector
+      
     div.console
       div
-        label Input : 
         input.selector(value="a > b + #c .d[e='f']")
+      div.eq
+        div.down-allow
+          //div.down-allow-square
+          //div.down-allow-spacer
+          div.down-allow-square
+          div.down-allow-square
+          div.down-allow-tri
       pre.result-container
         code.result.html
-          | now loading...
     
     div
       div.center
