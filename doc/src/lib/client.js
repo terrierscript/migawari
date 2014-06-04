@@ -24,7 +24,7 @@ var MigawariView = Backbone.View.extend({
   },
   el : ".console",
   events: {
-    "keydown input.selector" : "refresh",
+    "keyup input.selector" : "refresh",
     "change input.selector" : "refresh"
   },
   refresh : function(){
