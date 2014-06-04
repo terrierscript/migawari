@@ -1,0 +1,45 @@
+
+size = 30px
+color = #aaa
+
+triangle-h(size, color, attr)
+  height: 0
+  width: size
+  border-top: size solid transparent;
+  border-bottom: size solid transparent;
+  border-{attr}: size*4 solid color;
+
+
+triangle_v(size, color, attr)
+  width: 0
+  height : size
+  border-right: size solid transparent;
+  border-left: size solid transparent;
+  border-{attr}: size*4 solid color;
+
+.center
+  c_size=size
+  width: c_size
+  height: c_size
+  line-height: c_size
+  vertical-align: middle
+  background: color
+  .circle
+    circle_size = size
+    content: ""
+    margin: (circle_size_2)
+    background:white
+    width: size
+    height: size
+
+.right
+  triangle-h(size, color, "left")
+  
+.left
+  triangle-h(size, color, "right")
+
+.top
+  triangle-v(size, color, "bottom")
+
+.bottom
+  triangle_v(size, color, "top")

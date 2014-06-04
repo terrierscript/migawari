@@ -1,0 +1,33 @@
+html
+  head
+    meta(charset='utf8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
+    meta(name='description', content='description of your site')
+    meta(name='author', content= "author of the site")
+
+    title= title
+    link(rel='stylesheet', href='css/master.css')
+    link(rel='stylesheet', href='css/vendor/obsidian.css')
+  body
+    h1 Migawari
+    div.console
+      div
+        label Input : 
+        input.selector(value="a > b + #c .d")
+      div Output:
+      pre.result-container
+        code.result.html
+          | now loading...
+    
+    div
+      div.center
+        div.circle
+      div.bottom
+      div.left
+      div.top
+      div.right
+
+    //- add other scripts through require.js, not here
+    script(src="js/client.js")
+    
+    
