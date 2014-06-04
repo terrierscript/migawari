@@ -3,3 +3,4 @@
 /performance
 .npmignore
 .travis.yml
+/doc
