@@ -7,21 +7,36 @@ html
 
     title= title
     link(rel='stylesheet', href='css/master.css')
+    link(rel='stylesheet', href='css/shuriken.css')
     link(rel='stylesheet', href='css/vendor/obsidian.css')
     link(href="//fonts.googleapis.com/css?family=Joti+One:400", rel="stylesheet", type="text/css")
 
   body
+      
     header
       h1 
         a(href="http://github.com/suisho/migawari") Migawa
-          span.r r
-          | i
+          span.brown r
+          |i
+        div.shuriken
+          div.row
+            div.top
+          div.row.middle
+            div.left
+            div.center
+              div.circle
+            div.right
+          div.row
+            div.bottom
+        
       section.description
         | Regenerate HTML from CSS selector
       
     div.console
-      div
+    
+      div.input_container
         input.selector(value="a > b + #c .d[e='f']")
+          
       div.eq
         div.down-allow
           //div.down-allow-square
@@ -31,15 +46,10 @@ html
           div.down-allow-tri
       pre.result-container
         code.result.html
+          
     
-    div
-      div.center
-        div.circle
-      div.bottom
-      div.left
-      div.top
-      div.right
-
+    
+    
     //- add other scripts through require.js, not here
     script(src="js/client.js")
     

@@ -1,3 +1,12 @@
+exporseWatch = (config, task) ->
+  confSrc = config[task].src
+  return {
+    files: [
+      confSrc.files[0].cwd + confSrc.files[0].src  
+    ]
+    tasks: task
+  }
+  
 module.exports = (grunt) ->
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -48,17 +57,6 @@ module.exports = (grunt) ->
               }),
               connect.static(options.base[0])
             ];
-    watch:
-      src:
-        files: 'src/**/*'
-        tasks: 'compile'
-      public:
-        files: [
-          'public/**/*',
-          '!public/bower_components/**/*'
-        ]
-        options:
-          livereload: 35729
     open:
       server:
         path: 'http://localhost:<%= connect.server.options.port %>'
@@ -84,13 +82,24 @@ module.exports = (grunt) ->
         tasks: [
           'open',
           'connect',
-          'watch:src',
           'watch:public',
+          'watch:jade',
+          'watch:stylus',
         ]
        options:
          logConcurrentOutput: true
             
   }
+  config.watch = 
+    jade: exporseWatch(config, "jade")
+    stylus: exporseWatch(config, "stylus")
+    public:
+      files: [
+        'public/**/*',
+        '!public/bower_components/**/*'
+      ]
+      options:
+        livereload: 35729
   grunt.initConfig config
   grunt.registerTask 'compile', ['clean', 'concurrent:compile']
   grunt.registerTask 'server', ['compile', 'concurrent:server']

@@ -1,45 +1,89 @@
 
 size = 30px
-color = #aaa
+color = #777
+scale = 2.5
 
-triangle-h(size, color, attr)
+btr(size, attr)
+  border-{attr}: size solid transparent;
+
+bdr(size, color, attr)
+  border-{attr}: size*scale solid color;
+
+triangle-h(size)
   height: 0
   width: size
-  border-top: size solid transparent;
-  border-bottom: size solid transparent;
-  border-{attr}: size*4 solid color;
-
-
-triangle_v(size, color, attr)
+triangle-v(size)
   width: 0
-  height : size
-  border-right: size solid transparent;
-  border-left: size solid transparent;
-  border-{attr}: size*4 solid color;
+  height: size
 
-.center
-  c_size=size
-  width: c_size
-  height: c_size
-  line-height: c_size
-  vertical-align: middle
-  background: color
-  .circle
-    circle_size = size
-    content: ""
-    margin: (circle_size_2)
-    background:white
-    width: size
-    height: size
+positioning()
+  z = 1
+  zoom : 0.2
+  deg = 40deg
+  position:absolute
+  top:-100px ; 
+  left:180px;
+  transform: rotate(deg)
+  -webkit-transform: rotate(deg)
+  -moz-transform: rotate(deg)
 
-.right
-  triangle-h(size, color, "left")
-  
-.left
-  triangle-h(size, color, "right")
+.shuriken
+  positioning()
+  // sizes
+  box = 270px
+  width : box;
+  height : box;
+  .center
+    c_size = size * 2
+    width: c_size
+    height: c_size
+    line-height: c_size
+    background: color
+    .circle
+      circle_size = size * 1.5
+      content: ""
+      background: white;
+      width: circle_size
+      height: circle_size
+      border-radius: circle_size
+      margin: ((circle_size - size)/2)
+  .row
+    width : 100%;
+    clear:both
+    
+  .row:not(.middle)
+    margin_size = size * (scale + 1)
+    margin: 0 margin_size
+    
+  .middle 
+    div
+      float:left;
+    
+  .right
+    triangle-h(size)
+    btr(size, top)
+    btr(size, bottom)
+    bdr(size, color, left)
 
-.top
-  triangle-v(size, color, "bottom")
+  .left
+    triangle-h(size)
+    btr(size, top)
+    btr(size, bottom)
+    bdr(size, color, right)
+  .left-dark
+    triangle-h(size)
+    btr(size, top)
+    bdr(size, colorDark, right)
 
-.bottom
-  triangle_v(size, color, "top")
+  .top
+    triangle-v(size)
+    btr(size, left)
+    btr(size, right)
+    bdr(size, color, bottom)    
+
+  .bottom
+    triangle-v(size)
+    btr(size/4, left)
+    btr(size/4, right)
+    bdr(size/4, color, top)
+    width: size * 1.5

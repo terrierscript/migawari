@@ -1,5 +1,4 @@
 @import '_settings'
-
 // http://www.colourlovers.com/palette/2082743/Choco_raspberry_log
 $brown = #926842
 $kafe = #793F29
@@ -22,18 +21,23 @@ h1
   font-family: "Joti One"
   margin-bottom : 4px;
   padding-bottom : 0px;
+  position: relative
   
   &:first-letter
     zoom : 1.5
+    color: $kafe
+
   a
+    z-index:10
     color : #777
     text-decoration:none
-    span.r
+    span.brown
       color: $kafe
       zoom: 2
 section.description
   padding-left:6px
-
+.input_container
+  position:relative
 input.selector
   padding: 4px;
   border-radius: 4px;
