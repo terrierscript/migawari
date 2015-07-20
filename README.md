@@ -9,7 +9,7 @@ var migawari = require("migawari")
 migawari('a');	//<a></a>
 migawari('.c');	//<div class="c"></div>
 migawari('#d');	//<div id="d"></div>
-migawari('a[title='foo']');	//<a title="foo"></a>
+migawari('a[title="foo"]');	//<a title="foo"></a>
 migawari('a > b');	//<a><b></b></a>
 migawari('a , b');	//<a></a><b></b>
 migawari('a + b');	//<a></a><b></b>
